@@ -7,17 +7,17 @@ def call(effectiveConfig = [:]) {
 
   node {
     deleteDir()
-    checkout([$class: 'GitSCM',
-      branches: [[name: '*/branchName']],
-      extensions: [
-          [$class: 'SparseCheckoutPaths',
-            sparseCheckoutPaths:
-            [[$class:'SparseCheckoutPath', path:'package.json,pom.xml']]
-          ]
-      ],
-      userRemoteConfigs: [[credentialsId: 'someID',
-      url: 'git@link.git']]
-    ])
+    // checkout([$class: 'GitSCM',
+    //   branches: [[name: '*/branchName']],
+    //   extensions: [
+    //       [$class: 'SparseCheckoutPaths',
+    //         sparseCheckoutPaths:
+    //         [[$class:'SparseCheckoutPath', path:'package.json,pom.xml']]
+    //       ]
+    //   ],
+    //   userRemoteConfigs: [[credentialsId: 'someID',
+    //   url: 'git@link.git']]
+    // ])
 
     if (fileExists('package.json')) {
       def packageJSON = readJSON file: 'package.json'
