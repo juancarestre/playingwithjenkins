@@ -1,6 +1,6 @@
 def call(effectiveConfig = [:]) {
   def derivedBuildPlan = [
-    "repoType": "NOT DETECTED"
+    "repoType": "NOT DETECTED",
     "npm": [],
     "maven": []
   ]
