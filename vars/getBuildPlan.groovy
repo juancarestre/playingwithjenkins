@@ -19,6 +19,8 @@ def call(effectiveConfig = [:]) {
     //   url: 'git@link.git']]
     // ])
 
+    checkout scm
+
     if (fileExists('package.json')) {
       def packageJSON = readJSON file: 'package.json'
       derivedBuildPlan.repoType = "NPM"
