@@ -24,9 +24,9 @@ def call(effectiveConfig = [:]) {
     if (fileExists('package.json')) {
       def packageJSON = readJSON file: 'package.json'
       derivedBuildPlan.repoType = "NPM"
-      derivedBuildPlan.npm.cypress = effectiveConfig.npm.cypress && packageJSON.devDependencies.cypress
-      derivedBuildPlan.npm.eslint = packageJSON.devDependencies.eslint
-      derivedBuildPlan.npm.tslint = packageJSON.devDependencies.tslint
+    //   derivedBuildPlan.npm.cypress = effectiveConfig.npm.cypress && packageJSON.devDependencies.cypress
+    //   derivedBuildPlan.npm.eslint = packageJSON.devDependencies.eslint
+    //   derivedBuildPlan.npm.tslint = packageJSON.devDependencies.tslint
     } else if (fileExists('pom.xml')) {
       derivedBuildPlan.repoType = "MAVEN"
       derivedBuildPlan.maven.integTest = effectiveConfig.maven.integTest && fileExists('src/integtest')
