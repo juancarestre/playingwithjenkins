@@ -1,0 +1,41 @@
+version: "2"
+services:
+  master:
+    image: eeacms/jenkins-master
+    ports:
+    - "81:8080"
+    environment:
+    - JAVA_OPTS=-Xmx2048m
+    volumes:
+    - jenkins-master:/var/jenkins_home
+
+  worker-node:
+    image: eeacms/jenkins-slave
+    build:
+      context: .
+      dockerfile: node-slave.dockerfile
+    environment:
+      JAVA_OPTS: "-Xmx2048m"
+      JENKINS_MASTER: "http://master:8080"
+      JENKINS_NAME: "worker-node"
+      JENKINS_USER: "juanrestrepo"
+      JENKINS_PASS: "password"
+      JENKINS_RETRY: "10"
+    volumes:
+    - jenkins-worker-node:/var/jenkins_home/worker-node
+
+  ngrok:
+    image: wernight/ngrok
+    build:
+      context: .
+      dockerfile: ngrok.dockerfile
+    ports: 
+      - "4040:4040"
+    links:
+      - "master"
+    command: "ngrok http master:8080"
+    
+
+volumes:
+  jenkins-master:
+  jenkins-worker-node:
