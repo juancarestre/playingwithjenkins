@@ -21,7 +21,7 @@ def call(givenConfig = [:]) {
     ]
   ]
   // https://e.printstacktrace.blog/how-to-merge-two-maps-in-groovy/
-  def effectiveConfig merge(defaultConfig, givenConfig)
+  def effectiveConfig = merge(defaultConfig, givenConfig)
   println "Configuration is documented here: https://whereverYouHos/getConfig.groovy"
   println "Default config: " + defaultConfig
   println "Given config: " + givenConfig
