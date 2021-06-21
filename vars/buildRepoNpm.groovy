@@ -1,6 +1,6 @@
 def call(buildPlan = [:]) {
 
-    pipeline {
+    pipeline(buildPlan.jenkinsNode) {
         agent any
         stages {
             stage ("Git pull"){
@@ -19,6 +19,7 @@ def call(buildPlan = [:]) {
             stage("deploy"){
                 steps{
                     echo "aws s3 ls"
+                    echo buildPlan
                 }
             }
         }
