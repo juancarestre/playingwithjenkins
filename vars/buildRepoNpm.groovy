@@ -1,7 +1,13 @@
 def call(buildPlan = [:]) {
 
-    pipeline(buildPlan.jenkinsNode) {
-        agent any
+    pipeline() {
+        agent {
+            docker {
+                image 'node:lastest'
+                label 'my-defined-label'
+                args  '-v /tmp:/tmp'
+            }
+        }
         stages {
             stage ("Git pull"){
                 steps{
