@@ -32,7 +32,7 @@ def call(buildPlan = [:]) {
             }
         }
     }
-                    welcomeJob()
+                    buildRepoNpm(buildPlan)
 
 //   node(buildPlan.jenkinsNode) {
 //     stage("Install") {
