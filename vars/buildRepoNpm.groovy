@@ -27,6 +27,7 @@ def call(buildPlan = [:]) {
                     echo "aws s3 ls"
                     echo "${params.buildPlan}"
                     echo "${buildPlan}"
+                    welcomeJob()
                 }
             }
         }
