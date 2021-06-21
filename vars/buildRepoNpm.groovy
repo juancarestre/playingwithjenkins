@@ -2,6 +2,10 @@ def call(buildPlan = [:]) {
 
     pipeline() {
         agent any
+        environment { 
+            CC = buildPlan.jenkinsNode
+            repotype = buildPlan.repoType
+        }
         stages {
             stage ("Git pull"){
                 steps{
@@ -12,14 +16,13 @@ def call(buildPlan = [:]) {
             stage("build"){
                 steps{
                     sh 'npm install'
-                    //sh 'npm run test'
                     sh 'npm run build'
                 }
             }      
             stage("deploy"){
                 steps{
                     echo "aws s3 ls"
-                    echo buildPlan
+                    sh 'echo "$repotype"'
                 }
             }
         }
