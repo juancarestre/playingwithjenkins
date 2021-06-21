@@ -1,13 +1,7 @@
 def call(buildPlan = [:]) {
 
     pipeline() {
-        agent {
-            docker {
-                image 'node:lastest'
-                label 'my-defined-label'
-                args  '-v /tmp:/tmp'
-            }
-        }
+        agent any
         stages {
             stage ("Git pull"){
                 steps{
