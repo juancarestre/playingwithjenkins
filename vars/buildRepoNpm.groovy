@@ -32,6 +32,7 @@ def call(buildPlan = [:]) {
             }
         }
     }
+                    welcomeJob()
 
 //   node(buildPlan.jenkinsNode) {
 //     stage("Install") {
