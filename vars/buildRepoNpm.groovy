@@ -1,5 +1,5 @@
 def call(buildPlan = [:]) {
-
+    echo "${buildPlan}"
     pipeline() {
         agent any
         environment { 
@@ -13,8 +13,7 @@ def call(buildPlan = [:]) {
         stages {
             stage ("Git pull"){
                 steps{
-                    git branch: 'master', url: 'https://github.com/juancarestre/angular_get_started.git'
-                    sh 'ls'
+                    checkout scm
                 }
             }
             stage("build"){
@@ -27,6 +26,7 @@ def call(buildPlan = [:]) {
                 steps{
                     echo "aws s3 ls"
                     echo "${params.buildPlan}"
+                    echo "${buildPlan}"
                 }
             }
         }
